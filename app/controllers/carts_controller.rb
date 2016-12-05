@@ -6,7 +6,10 @@ class CartsController < ApplicationController
     current_cart.add_product(@product)
 
     flash[:notice] = "加入購物車"
-    redirect_to :back
+    respond_to do |format|
+      format.js
+      format.html { redirect_to :back }
+    end
   end
 
   def remove_product
