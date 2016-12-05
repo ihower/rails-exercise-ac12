@@ -1,5 +1,6 @@
 class Order < ApplicationRecord
 
+  belongs_to :user
   has_many :line_items, :dependent => :destroy
 
   def add_products_by_cart(cart)

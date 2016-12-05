@@ -1,7 +1,9 @@
 class OrdersController < ApplicationController
 
+  before_action :authenticate_user!
+
   def index
-    @orders = Order.all
+    @orders = current_user.orders
   end
 
   def new
@@ -10,8 +12,8 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new( order_params )
-
     @order.add_products_by_cart(current_cart)
+    @order.user = current_user
 
     if @order.save
       current_cart.destroy
