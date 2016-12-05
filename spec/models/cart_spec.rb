@@ -10,12 +10,12 @@ RSpec.describe Cart, type: :model do
 
   describe "#amount" do
     it "should return total amount" do
-      @cart.line_items.create( :product_id => @product1.id, :qty => 1)
-      @cart.line_items.create( :product_id => @product2.id, :qty => 2)
+      @cart.line_items.create( :product_id => @product1.id, :qty => 1, :price => @product1.price)
+      @cart.line_items.create( :product_id => @product2.id, :qty => 2, :price => @product2.price)
 
       expect(@cart.amount).to eq(120)
     end
   end
 
-  
+
 end

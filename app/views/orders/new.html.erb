@@ -1,0 +1,24 @@
+<h2>結帳</h2>
+
+<%= form_for @order do |f| %>
+  <div class="form-group">
+    <%= f.label :receiver_name %>
+    <%= f.text_field :receiver_name, :required => true, :class => "form-control" %>
+
+    <%= f.label :email %>
+    <%= f.email_field :email, :required => true, :class => "form-control" %>
+
+    <%= f.label :cellphone %>
+    <%= f.text_field :cellphone, :required => true, :class => "form-control" %>
+
+    <%= f.label :address %>
+    <%= f.text_field :address, :required => true, :class => "form-control" %>
+
+
+    <div class="form-group">
+      <%= f.submit "送出訂單", :class => "btn btn-primary" %>
+    </div>
+
+  </div>
+
+<% end %>

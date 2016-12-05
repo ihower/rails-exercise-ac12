@@ -5,14 +5,17 @@
     <li>
       <%= item.product.name %>
       數量 <%= item.qty %>
-      單價 <%= item.product.price %>
-      總價 <%= item.product.price * item.qty %>
+      單價 <%= item.price %>
+      總價 <%= item.price * item.qty %>
 
       <%= link_to "[x]", remove_product_cart_path( :product_id => item.product), :method => :post %>
     </li>
 <% end %>
 </ul>
 
+<%= link_to "結帳", new_order_path, :class => "btn btn-primary" %>
+
+<%= link_to "訂單紀錄", orders_path, :class => "btn btn-default" %>
 <hr>
 
 <% @products.each do |p| %>

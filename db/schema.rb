@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20161205023506) do
     t.integer  "order_id"
     t.integer  "cart_id"
     t.integer  "qty"
-    t.integer  "amount"
+    t.integer  "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["cart_id"], name: "index_line_items_on_cart_id"

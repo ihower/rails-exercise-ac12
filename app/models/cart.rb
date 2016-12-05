@@ -1,13 +1,13 @@
 class Cart < ApplicationRecord
 
-  has_many :line_items
+  has_many :line_items, :dependent => :destroy
 
   def total_qty
     self.line_items.map{ |x| x.qty }.sum
   end
 
   def amount
-    self.line_items.map{ |x| x.product.price * x.qty }.sum
+    self.line_items.map{ |x| x.price * x.qty }.sum
   end
 
   def add_product(product)
@@ -16,7 +16,9 @@ class Cart < ApplicationRecord
       existing_line_item.qty += 1
       existing_line_item.save!
     else
-      self.line_items.create!( :product => product, :qty => 1 )
+      self.line_items.create!( :product => product,
+                               :qty => 1,
+                               :price => product.price )
     end
   end
 

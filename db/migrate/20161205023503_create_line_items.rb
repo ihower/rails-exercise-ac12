@@ -5,7 +5,7 @@ class CreateLineItems < ActiveRecord::Migration[5.0]
       t.integer :order_id, :index => true
       t.integer :cart_id, :index => true
       t.integer :qty
-      t.integer :amount
+      t.integer :price
 
       t.timestamps
     end
