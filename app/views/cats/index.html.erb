@@ -1,0 +1,50 @@
+<div id="content">
+</div>
+
+<script>
+
+//var hello_html = JST["templates/hello"]( { name: "ihower"} );
+//$("#content").prepend( hello_html );
+
+var model = {
+    cats: [
+      { id:1, name: "Cat1", image: "img/cat1.jpg", counter: 1 },
+      { id:2, name: "Cat2", image: "img/cat2.jpg", counter: 1 },
+      { id:3, name: "Cat3", image: "img/cat3.jpg", counter: 1 },
+      { id:4, name: "Cat4", image: "img/cat4.jpg", counter: 1 },
+      { id:5, name: "Cat5", image: "img/cat5.jpg", counter: 1 },
+    ]
+}
+
+var app = {
+  init: function(){
+    this.render_cat_list()
+    this.render_cat( model.cats[0] )
+  },
+  render_cat_list: function(){
+    cats_list_html = JST["templates/cat_list"]( { cats: model.cats } )
+    $("#content").prepend( cats_list_html );
+
+    var that = this;
+    $("#cat-list a").click(function(e){
+      e.preventDefault();
+      cat_id = $(this).data("id");
+      that.render_cat( model.cats[cat_id-1] )
+    })
+  },
+  render_cat: function(cat) {
+    $(".cat-block").remove();
+    cat_html = JST["templates/cat"]( { cat: cat } )
+    $("#content").append( cat_html );
+    var that = this;
+    $(".cat-block .cat-img").click(function(){
+      cat.counter = cat.counter + 1;
+      that.render_cat(cat);
+    })
+  }
+
+}
+
+app.init();
+
+</script>
