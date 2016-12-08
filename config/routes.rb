@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  resources :cats
+  resources :cats do
+    collection do
+      get :vue
+    end
+  end
 
   resources :products
 

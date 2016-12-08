@@ -1,0 +1,45 @@
+<h2>vue example</h2>
+
+<div id ="app">
+  <a v-on:click="toggle">Toggle</a>
+
+  <input type="text" v-model="todo_input">
+  <button v-on:click="add_todo">Add Todo</button>
+
+  <p v-if="seen">
+    {{ message }}
+  </p>
+
+  <ol>
+    <li v-for = "todo in todos" >
+      {{ todo.text }}
+    </li>
+  </ol>
+
+</div>
+
+<script>
+var app = new Vue({
+  el : '#app' ,
+  data : {
+    seen: false,
+    message : 'Hellqweqweqwewqeo Vue!',
+    todo_input: "",
+    todos: [
+      { text: "AAAA" },
+      { text: "BBBB" },
+      { text: "CCCC" },
+    ]
+  },
+  methods: {
+    toggle: function(){
+      this.seen = !this.seen;
+    },
+    add_todo: function(){
+      this.todos.push( { text: this.todo_input } );
+      // do ajax here
+      this.todo_input = "";
+    }
+  }
+})
+</script>
