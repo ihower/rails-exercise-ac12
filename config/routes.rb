@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :cats do
     collection do
       get :vue
+      get :v2
     end
   end
 

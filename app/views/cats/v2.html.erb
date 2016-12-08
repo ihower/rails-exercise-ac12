@@ -1,0 +1,38 @@
+<h2>Cat vue example</h2>
+
+<div id ="app">
+    <span v-for = "cat in cats">
+      <a v-on:click="change_cat(cat)">
+        {{ cat.name }}
+      </a>
+    </span>
+
+    <div>
+      <h2></h2>
+      <div>Poll: {{ current_cat.counter }} </div>
+
+      <img v-on:click="vote_cat(current_cat)" v-bind:src="'/' + current_cat.image" width="160">
+    </div>
+</div>
+
+<script>
+var app = new Vue({
+  el : '#app' ,
+  // Not sure there's better way to set both cats and current_cat
+  data : (function(){
+    var cats = <%= raw @cats.to_json %>
+    return {
+      cats: cats,
+      current_cat: cats[0],
+    }
+  })(),
+  methods: {
+    change_cat: function(cat){
+      this.current_cat = cat;
+    },
+    vote_cat: function(cat){
+      cat.counter++;
+    }
+  }
+})
+</script>

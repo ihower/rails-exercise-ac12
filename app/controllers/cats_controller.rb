@@ -12,4 +12,8 @@ class CatsController < ApplicationController
     end
   end
 
+  def v2
+    @cats = Cat.all
+  end
+
 end
