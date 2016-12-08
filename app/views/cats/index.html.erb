@@ -7,20 +7,11 @@
 //$("#content").prepend( hello_html );
 
 var app = {
-  cats: [],
+  cats: <%= raw @cats.to_json %>,
   init: function(){
     var that = this;
-    $.ajax({
-      type: "GET",
-      dataType: "json",
-      url : "/cats",
-      success: function(data){
-        that.cats = data;
-        console.log( data );
-        that.render_cat_list()
-        that.render_cat( data[0] )
-      }
-    })
+    this.render_cat_list()
+    this.render_cat( this.cats[0] )
   },
   render_cat_list: function(){
     cats_list_html = JST["templates/cat_list"]( { cats: this.cats } )
