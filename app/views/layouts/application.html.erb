@@ -3,9 +3,9 @@
   <head>
     <title>RailsExercise</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= yield :meta %>
   </head>
 
   <body>
@@ -33,7 +33,14 @@
           <%= link_to('登入', new_session_path(:user)) %>
         <% end %>
 
-      <%= yield %>
+      <div class="main-content">
+        <%= yield %>
+      </div>
+
+      <div class="sidebar">
+        <%= yield :sidebar %>
+      </div>
+
     </div>
   </body>
 </html>
