@@ -2,7 +2,7 @@ namespace :dev do
 
   task :generate_cats => :environment do
     Cat.delete_all
-    
+
     cats = [
       { name: "Cat1", image: "img/cat1.jpg" },
       { name: "Cat2", image: "img/cat2.jpg" },
@@ -22,6 +22,7 @@ namespace :dev do
 
     100.times do
       Product.create!( :name => Faker::Commerce.product_name,
+                       :friendly_id => SecureRandom.uuid,
                        :price => Faker::Commerce.price * 100,
                        :stock_qty => rand(100),
                        :description => Faker::Lorem.paragraph,
