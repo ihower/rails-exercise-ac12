@@ -13,13 +13,16 @@ function subscribe_room( room_id ) {
       received: function(data) {
 
         $("#messages").prepend(data);
-        
+
         //$("#messages").prepend(
         //  "<li>" + data["content"] +
         //    " at " + data["created_at"] +
         //   "</li>"
         //)
 
+      },
+      speak: function(content){
+        this.perform("speak", { content: content })
       }
     }
   );
