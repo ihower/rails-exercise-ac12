@@ -12,12 +12,14 @@ function subscribe_room( room_id ) {
       disconnected: function() {},
       received: function(data) {
 
-        $("#messages").prepend(
-          "<li>" + data["content"] +
-            " at " + data["created_at"] +
-           "</li>"
-        )
-              
+        $("#messages").prepend(data);
+        
+        //$("#messages").prepend(
+        //  "<li>" + data["content"] +
+        //    " at " + data["created_at"] +
+        //   "</li>"
+        //)
+
       }
     }
   );
