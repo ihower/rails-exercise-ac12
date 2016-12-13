@@ -4,6 +4,7 @@ class MessagesController < ApplicationController
 
   def create
     @message = @room.messages.new( :content => params[:message][:content] )
+    @message.user = current_user
 
     if @message.save
       # data = { :content => @message.content, :created_at => @message.created_at, :user_name => "Foobar" }
