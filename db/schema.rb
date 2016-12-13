@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161208022227) do
+ActiveRecord::Schema.define(version: 20161213025728) do
 
   create_table "carts", force: :cascade do |t|
     t.integer  "user_id"
@@ -40,6 +40,15 @@ ActiveRecord::Schema.define(version: 20161208022227) do
     t.index ["product_id"], name: "index_line_items_on_product_id"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.integer  "room_id"
+    t.text     "content"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_messages_on_room_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "email"
@@ -52,6 +61,14 @@ ActiveRecord::Schema.define(version: 20161208022227) do
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
+  create_table "posts", force: :cascade do |t|
+    t.string   "title"
+    t.text     "content"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "products", force: :cascade do |t|
     t.string   "name"
     t.integer  "price"
@@ -60,6 +77,14 @@ ActiveRecord::Schema.define(version: 20161208022227) do
     t.string   "image_url"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "friendly_id"
+    t.index ["friendly_id"], name: "index_products_on_friendly_id", unique: true
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

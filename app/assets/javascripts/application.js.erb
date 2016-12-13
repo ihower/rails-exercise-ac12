@@ -14,10 +14,11 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-sprockets
+//= require cable
+//= require channels/messages
+//= require_tree ./templates
 <% if Rails.env.production?
   require_asset "vue.min"
 else
   require_asset "vue"
 end %>
-//= require_tree ./templates
-//= require_tree .
