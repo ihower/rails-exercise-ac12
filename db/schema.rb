@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161213025728) do
+ActiveRecord::Schema.define(version: 20161215021757) do
 
   create_table "carts", force: :cascade do |t|
     t.integer  "user_id"
@@ -56,9 +56,22 @@ ActiveRecord::Schema.define(version: 20161213025728) do
     t.string   "cellphone"
     t.string   "address"
     t.integer  "amount"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.string   "status",         default: "pending"
+    t.string   "payment_status", default: "pending"
     t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.integer  "order_id"
+    t.string   "payment_method"
+    t.integer  "amount"
+    t.datetime "paid_at"
+    t.text     "params"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["order_id"], name: "index_payments_on_order_id"
   end
 
   create_table "posts", force: :cascade do |t|

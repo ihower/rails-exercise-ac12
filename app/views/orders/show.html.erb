@@ -1,0 +1,28 @@
+<h1>訂單編號 #<%= @order.id %></h1>
+
+<%= @order.payment_status %>
+
+<% if @order.paid? %>
+  <p>已付款</p>
+<% else %>
+
+<p>
+  <% Payment::PAYMENT_METHODS.each do |pm| %>
+    <%= link_to t(pm, :scope => "PaymentPay2go"), checkout_pay2go_order_path(@order, :payment_method => pm), :class => "btn btn-primary btn-lg", :method => :post %>
+  <% end %>
+</p>
+
+<% end %>
+
+<h2>付款紀錄</h2>
+<ul>
+<% @order.payments.each do |p| %>
+  <li>
+      <% if p.paid_at %>
+        付款成功
+      <% else %>
+        付款失敗
+      <% end %>
+      <%= p.created_at %>
+<% end %>
+</ul>

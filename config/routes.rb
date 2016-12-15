@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  post 'pay2go/return'
+  post 'pay2go/notify'
+
   mount ActionCable.server => "/cable"
 
   devise_for :users
@@ -17,7 +20,11 @@ Rails.application.routes.draw do
 
   resources :products
 
-  resources :orders
+  resources :orders do
+    member do
+       post :checkout_pay2go
+    end
+  end
 
   resource :cart do
     member do

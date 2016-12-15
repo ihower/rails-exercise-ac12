@@ -1,0 +1,22 @@
+# 廠商後台測試環境: https://cweb.pay2go.com
+# 信用卡測試卡號:
+# 4000-2222-2222-2222
+# 4000-1322-2222-2222
+default: &default
+  merchant_id: 32779609
+  hash_key: jC65KupZ1GEyj8bijLOm16SpqG2sb8uu
+  hash_iv: LBAw5Zv7FaGYiRgB
+  url: https://capi.pay2go.com/MPG/mpg_gateway
+  notify_url: 'http://requestb.in/1lfg6rg1'
+
+development:
+  <<: *default
+
+staging:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default

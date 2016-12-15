@@ -6,6 +6,10 @@ class OrdersController < ApplicationController
     @orders = current_user.orders
   end
 
+  def show
+    @order = current_user.orders.find( params[:id] )
+  end
+
   def new
     @order = Order.new
   end
@@ -16,13 +20,27 @@ class OrdersController < ApplicationController
     @order.user = current_user
 
     if @order.save
-      current_cart.destroy
-      session[:cart_id] = nil
+      #current_cart.destroy
+      #session[:cart_id] = nil
 
-      redirect_to root_path
+      redirect_to order_path(@order)
     else
       render :new
     end
+  end
+
+  def checkout_pay2go
+    @order = current_user.orders.find( params[:id] )
+
+    if @order.paid?
+      redirect_to :back, alert: 'already paid!'
+    else
+      @payment = Payment.create!( :order => @order,
+                                  :payment_method => params[:payment_method],
+                                  :amount => @order.amount )
+      render :layout => false
+    end
+
   end
 
   protected
