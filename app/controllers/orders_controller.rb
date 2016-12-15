@@ -20,8 +20,8 @@ class OrdersController < ApplicationController
     @order.user = current_user
 
     if @order.save
-      #current_cart.destroy
-      #session[:cart_id] = nil
+      current_cart.destroy
+      session[:cart_id] = nil
 
       redirect_to order_path(@order)
     else
