@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :rooms do
+    get :react, :on => :member
     resources :messages
   end
 
