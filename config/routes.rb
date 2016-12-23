@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   post 'pay2go/return'
   post 'pay2go/notify'
 
-  mount ActionCable.server => "/cable"
+  # mount ActionCable.server => "/cable"
 
   devise_for :users
 
