@@ -10,6 +10,6 @@
 
   // the default is find action-cable-url or /cable
   console.log("ActionCable.createConsumer.....")
-  App.cable = ActionCable.createConsumer();
+  App.cable = ActionCable.createConsumer("ws://ws.ihower.tw");
 
 }).call(this);
