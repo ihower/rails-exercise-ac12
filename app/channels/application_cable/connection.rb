@@ -14,7 +14,7 @@ module ApplicationCable
     protected
 
     def find_verified_user
-      if verified_user = env['warden'].user
+      if verified_user = env['warden'].try(:user)
         verified_user
       else
         nil # reject_unauthorized_connection
