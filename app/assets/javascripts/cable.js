@@ -8,9 +8,7 @@
 (function() {
   this.App || (this.App = {});
 
+  // the default is find action-cable-url or /cable
   App.cable = ActionCable.createConsumer();
-
-
-
 
 }).call(this);
